@@ -1,0 +1,19 @@
+# Angular cache and output
+.angular/
+dist/
+dist-tsc/
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+*.log.*
+
+# IDE configs
+.vscode/
+.idea/
+
+# Environment configurations
+.env
+.env.*
