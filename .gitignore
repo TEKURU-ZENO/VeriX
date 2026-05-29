@@ -1,0 +1,20 @@
+# Dependency directories
+node_modules/
+
+# Production builds
+dist/
+dist-tsc/
+
+# Local env files
+.env
+.env.local
+
+# Logs files
+logs/
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

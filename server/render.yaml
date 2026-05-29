@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: verix-api
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        sync: true
+      - key: MONGODB_URI
+        sync: true

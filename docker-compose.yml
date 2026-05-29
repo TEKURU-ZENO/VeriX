@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: verix-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - verix-network
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: verix-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:27017/verix
+      - JWT_SECRET=verix-super-secret-key
+    depends_on:
+      - mongodb
+    networks:
+      - verix-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    container_name: verix-client
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    networks:
+      - verix-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  verix-network:
+    driver: bridge
